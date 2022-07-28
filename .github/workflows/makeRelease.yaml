@@ -78,8 +78,10 @@ jobs:
           path: "./out/linux"
       - name: ZIP up
         run: |
-          cd ./out/win && zip -r windows.zip .
-          cd ./out/linux && zip -r linux.zip .
+          cd ./out/win
+          zip -r windows.zip .
+          cd ../linux && zip -r linux.zip .
+          cd ../..
           mv ./out/win/windows.zip .
           mv ./out/linux/linux.zip .
       - name: List
