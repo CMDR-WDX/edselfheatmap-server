@@ -23,6 +23,7 @@ jobs:
           cd out
           go build ..
           cd ..
+          cp .env.template ./out
 
       - name: Bundle
         uses: actions/upload-artifact@v2
@@ -48,6 +49,7 @@ jobs:
           cd out
           go build ..
           cd ..
+          cp .env.template ./out
 
       - name: Bundle
         uses: actions/upload-artifact@v2
@@ -76,8 +78,10 @@ jobs:
           path: "./out/linux"
       - name: ZIP up
         run: |
-          zip -r windows.zip ./out/win
-          zip -r linux.zip ./out/linux
+          cd ./out/win && zip -r windows.zip .
+          cd ./out/linux && zip -r linux.zip .
+          mv ./out/win/windows.zip .
+          mv ./out/linux/linux.zip .
       - name: List
         run: |
           tree
